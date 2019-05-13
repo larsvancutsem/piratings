@@ -1,0 +1,23 @@
+Package: piratings
+Type: Package
+Title: Calculate pi ratings for teams competing in sport matches
+Version: 0.1.0
+Author: Lars Van Cutsem
+Maintainer: Lars Van Cutsem <lars.vancutsem@hotmail.com>
+Depends: R (>= 2.10)
+Imports: methods
+Description: The package provides the user with the ability to 
+  calculate and optimize dynamic performance ratings of association football 
+  teams competing in matches, in accordance with the method used in 
+  the research paper "Determining the level of ability of football teams by 
+  dynamic ratings based on the relative discrepancies in scores between adversaries", 
+  by Constantinou and Fenton. This dynamic rating system has proven to provide superior 
+  results for predicting association football outcomes.    
+  The research paper can be found here: (<http://www.constantinou.info/downloads/papers/pi-ratings.pdf>).
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Suggests: 
+    knitr
+VignetteBuilder: knitr
