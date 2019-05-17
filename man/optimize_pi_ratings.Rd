@@ -27,31 +27,8 @@ the grid optimization, default value: seq(0, 1, 0.05)}
 }
 \value{
 a dataframe with the results of the grid optimization,
-the average squared error for every combination of learning rates
+the mean squared error for every combination of learning rates
 lambda and gamma specified in the parameter vectors
-# @export
-================================================================================
-check requirements for calculation
-================================================================================
-================================================================================
-create local variables and perform grid optimization
-================================================================================
-lambda_seq_l:      length of the sequence of lambdas taken into consideration
-                   for the grid optimization
-
-gamma_seq_l:       length of the sequence of gammas taken into consideration
-                   for the grid optimization
-
-avg_sq_e:          numerical matrix that stores the mean squared error
-                   the pi ratings with the prespecified choice set
-                   of parameters
-
-current_lambda:    the selected lambda to perform the specific test run with
-
-current_gamma:     the selected gamma to perform the specific test run with
-
-result:            squared error result of the pi ratings for the test run
-                   with specified parameter settings
 }
 \description{
 This function performs grid optimization on a prespecified set
@@ -64,4 +41,10 @@ ability of football teams by dynamic ratings based on the relative
 discrepancies in scores between adversaries'
 
 source: http://www.constantinou.info/downloads/papers/pi-ratings.pdf
+}
+\examples{
+# toy example
+teams <- matrix(c("team A", "team B", "team B", "team A"), nrow = 2)
+outcomes <- matrix(c(1, 3, 2, 1), nrow = 2)
+optimize_pi_ratings(teams, outcomes, seq(0.05, 0.07, 0.005), seq(0.4, 0.6, 0.05))
 }

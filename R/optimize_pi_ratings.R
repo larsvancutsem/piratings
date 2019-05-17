@@ -24,18 +24,23 @@
 #' @param b_in a constant, logarithmic base, default value: 10
 #' @param c_in a constant, default value: 3
 #' @return a dataframe with the results of the grid optimization,
-#' the average squared error for every combination of learning rates
+#' the mean squared error for every combination of learning rates
 #' lambda and gamma specified in the parameter vectors
-#'# @export
+#' @examples
+#' # toy example
+#' teams <- matrix(c("team A", "team B", "team B", "team A"), nrow = 2)
+#' outcomes <- matrix(c(1, 3, 2, 1), nrow = 2)
+#' optimize_pi_ratings(teams, outcomes, seq(0.05, 0.07, 0.005), seq(0.4, 0.6, 0.05))
+#' @export
 
 
 optimize_pi_ratings <- function(teams = NULL, outcomes = NULL, lambda_in = seq(0, 0.1, by = 0.005),
                                 gamma_in = seq(0, 1, 0.05), b_in = 10, c_in = 3) {
 
 
-    #' ================================================================================
-    #' check requirements for calculation
-    #' ================================================================================
+    # ================================================================================
+    # check requirements for calculation
+    # ================================================================================
 
 
     # check requirements
@@ -91,31 +96,30 @@ optimize_pi_ratings <- function(teams = NULL, outcomes = NULL, lambda_in = seq(0
     }
 
 
-    #' ================================================================================
-    #' create local variables and perform grid optimization
-    #' ================================================================================
+    # ================================================================================
+    # create local variables and perform grid optimization
+    # ================================================================================
 
 
     # create local variables
 
 
-    #' lambda_seq_l:      length of the sequence of lambdas taken into consideration
-    #'                    for the grid optimization
-    #'
-    #' gamma_seq_l:       length of the sequence of gammas taken into consideration
-    #'                    for the grid optimization
-    #'
-    #' avg_sq_e:          numerical matrix that stores the mean squared error
-    #'                    the pi ratings with the prespecified choice set
-    #'                    of parameters
-    #'
-    #' current_lambda:    the selected lambda to perform the specific test run with
-    #'
-    #' current_gamma:     the selected gamma to perform the specific test run with
-    #'
-    #' result:            squared error result of the pi ratings for the test run
-    #'                    with specified parameter settings
-    #'
+    # lambda_seq_l:      length of the sequence of lambdas taken into consideration
+    #                    for the grid optimization
+    #
+    # gamma_seq_l:       length of the sequence of gammas taken into consideration
+    #                    for the grid optimization
+    #
+    # avg_sq_e:          numerical matrix that stores the mean squared error
+    #                    the pi ratings with the prespecified choice set
+    #                    of parameters
+    #
+    # current_lambda:    the selected lambda to perform the specific test run with
+    #
+    # current_gamma:     the selected gamma to perform the specific test run with
+    #
+    # result:            squared error result of the pi ratings for the test run
+    #                    with specified parameter settings
 
     lambda_seq_l <- length(lambda_in)
 
@@ -152,7 +156,7 @@ optimize_pi_ratings <- function(teams = NULL, outcomes = NULL, lambda_in = seq(0
 
 
     # prepare result
-    result <- data.frame("average squared error" = as.vector(avg_sq_e),
+    result <- data.frame("mean squared error" = as.vector(avg_sq_e),
                          "lambda" = lambda_in[rep(1:lambda_seq_l, gamma_seq_l)],
                          "gamma" = gamma_in[rep(1:gamma_seq_l,
                                                 lambda_seq_l)[order(rep(1:gamma_seq_l,

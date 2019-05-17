@@ -22,20 +22,25 @@
 #' @param b a constant, logarithmic base, default value: 10
 #' @param c a constant, default value: 3
 #' @param return_e a boolean variable, conditions the function
-#' to return either the average squared error when return_e = TRUE,
+#' to return either the mean squared error when return_e = TRUE,
 #' or the pi ratings when return_e = FALSE, default value: FALSE
 #' @return either an (n x 2) matrix containing the pi ratings for the teams in
-#' the n input matches or the average squared error for the specific parameter
+#' the n input matches or the mean squared error for the specific parameter
 #' setting, conditional on boolean parameter return_e being FALSE or TRUE
-#'# @export
+#' @examples
+#' # toy example
+#' teams <- matrix(c("team A", "team B", "team B", "team A"), nrow = 2)
+#' outcomes <- matrix(c(1, 3, 2, 1), nrow = 2)
+#' calculate_pi_ratings(teams, outcomes)
+#' @export
 
 
 calculate_pi_ratings <- function(teams = NULL, outcomes= NULL, lambda = 0.035, gamma = 0.7, b = 10, c = 3, return_e = FALSE) {
 
 
-    #' ================================================================================
-    #'check requirements for calculation
-    #' ================================================================================
+    # ================================================================================
+    # check requirements for calculation
+    # ================================================================================
 
 
     # check requirements
@@ -87,70 +92,70 @@ calculate_pi_ratings <- function(teams = NULL, outcomes= NULL, lambda = 0.035, g
     }
 
 
-    #' ================================================================================
-    #' create local variables and calculate pi ratings
-    #' ================================================================================
+    # ================================================================================
+    # create local variables and calculate pi ratings
+    # ================================================================================
 
 
     # create local variables
 
 
-    #' amount_matches:     amount of matches in dataset
-    #'
-    #' pi_ratings:         numerical matrix with pi ratings for each match
-    #'                     for respective columns 1 and 2 in the
-    #'                     teams matrix
-    #'
-    #' teams:              list of unique teams that occur in dataset
-    #'                     with respective home and away rankings
-    #'
-    #' score_diff:         actual score difference Home vs Away
-    #'
-    #' pred_score_diff:    predicted score difference Home vs Away
-    #'
-    #' abs_error:          list of absolute error in predicted score vs actual score differences
-    #'
-    #' home_team:          home team name
-    #'
-    #' away_team:          away team name
-    #'
-    #' HH_list:            list of home team's home ratings
-    #'
-    #' HA_list:            list of home team's away ratings
-    #'
-    #' AA_list:            list of away team's away ratings
-    #'
-    #' AH_list:            list of away team's home ratings
-    #'
-    #' team_rate_HH:       home team home rating
-    #'
-    #' team_rate_HA:       home team away rating
-    #'
-    #' team_rate_AA:       away team away rating
-    #'
-    #' team_rate_AH:       away team home rating
-    #'
-    #' e_score_diff_H:     expected score difference
-    #'                     against the average opponent
-    #'                     for the home team
-    #'
-    #' e_score_diff_A:     expected score difference
-    #'                     against the average opponent
-    #'                     for the away team
-    #'
-    #' e_score_diff:       expected score difference
-    #'                     for match
-    #'
-    #' prediction_error:   prediction error
-    #'
-    #' weighted_error:     weighted error
-    #'
-    #' weighted_error_H:   weighted error home team
-    #'
-    #' weighted_error_A:   weighted error away team
-    #'
-    #' mean_sq_e:          mean squared error
-    #'
+    # amount_matches:     amount of matches in dataset
+    #
+    # pi_ratings:         numerical matrix with pi ratings for each match
+    #                     for respective columns 1 and 2 in the
+    #                     teams matrix
+    #
+    # teams:              list of unique teams that occur in dataset
+    #                     with respective home and away rankings
+    #
+    # score_diff:         actual score difference Home vs Away
+    #
+    # pred_score_diff:    predicted score difference Home vs Away
+    #
+    # abs_error:          list of absolute error in predicted score vs actual score differences
+    #
+    # home_team:          home team name
+    #
+    # away_team:          away team name
+    #
+    # HH_list:            list of home team's home ratings
+    #
+    # HA_list:            list of home team's away ratings
+    #
+    # AA_list:            list of away team's away ratings
+    #
+    # AH_list:            list of away team's home ratings
+    #
+    # team_rate_HH:       home team home rating
+    #
+    # team_rate_HA:       home team away rating
+    #
+    # team_rate_AA:       away team away rating
+    #
+    # team_rate_AH:       away team home rating
+    #
+    # e_score_diff_H:     expected score difference
+    #                     against the average opponent
+    #                     for the home team
+    #
+    # e_score_diff_A:     expected score difference
+    #                     against the average opponent
+    #                     for the away team
+    #
+    # e_score_diff:       expected score difference
+    #                     for match
+    #
+    # prediction_error:   prediction error
+    #
+    # weighted_error:     weighted error
+    #
+    # weighted_error_H:   weighted error home team
+    #
+    # weighted_error_A:   weighted error away team
+    #
+    # mean_sq_e:          mean squared error
+    #
 
 
     amount_matches <- length(outcomes[, 1])

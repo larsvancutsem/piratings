@@ -1,5 +1,12 @@
 ---
-output: github_document
+title: "Pi Ratings"
+author: "Lars Van Cutsem"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{README}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -13,7 +20,6 @@ knitr::opts_chunk$set(
   error = TRUE
 )
 ```
-# piratings
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -72,9 +78,10 @@ Finally, we can plot the result of the grid optimization using ggplot2:
 ## we plot this grid using the ggplot2 library
 library(ggplot2)
 
-ggplot(data = grid, aes(x = lambda, y = gamma, fill = average.squared.error)) + 
+ggplot(data = grid, aes(x = lambda, y = gamma, fill = mean.squared.error)) + 
   geom_tile() + scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 2.668) + 
-  xlab("lambda") + ylab("gamma") + ggtitle("grid optimization") + theme(plot.title = element_text(hjust = 0.5))
+  labs(x = "lambda", y = "gamma", title = "grid optimization", fill = "Mean \nsquared \nerror") + 
+  theme(plot.title = element_text(hjust = 0.5))
 
 ## we find the optimal parameter settings to be
 ## lambda = 0.06 and gamma = 0.6
@@ -86,7 +93,3 @@ tail(piratings)
 ## Data
 Contains information from the European Soccer Database, which is made available
     [here](<https://www.kaggle.com/hugomathien/soccer>) under the [Open Database License](<https://opendatacommons.org/licenses/odbl/1.0/>) (ODbL) .
-
-## Author
-Lars Van Cutsem
-

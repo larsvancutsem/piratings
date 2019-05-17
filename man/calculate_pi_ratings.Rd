@@ -26,75 +26,13 @@ home to away and vice versa, default value: 0.7}
 \item{c}{a constant, default value: 3}
 
 \item{return_e}{a boolean variable, conditions the function
-to return either the average squared error when return_e = TRUE,
+to return either the mean squared error when return_e = TRUE,
 or the pi ratings when return_e = FALSE, default value: FALSE}
 }
 \value{
 either an (n x 2) matrix containing the pi ratings for the teams in
-the n input matches or the average squared error for the specific parameter
+the n input matches or the mean squared error for the specific parameter
 setting, conditional on boolean parameter return_e being FALSE or TRUE
-# @export
-================================================================================
-check requirements for calculation
-================================================================================
-================================================================================
-create local variables and calculate pi ratings
-================================================================================
-amount_matches:     amount of matches in dataset
-
-pi_ratings:         numerical matrix with pi ratings for each match
-                    for respective columns 1 and 2 in the
-                    teams matrix
-
-teams:              list of unique teams that occur in dataset
-                    with respective home and away rankings
-
-score_diff:         actual score difference Home vs Away
-
-pred_score_diff:    predicted score difference Home vs Away
-
-abs_error:          list of absolute error in predicted score vs actual score differences
-
-home_team:          home team name
-
-away_team:          away team name
-
-HH_list:            list of home team's home ratings
-
-HA_list:            list of home team's away ratings
-
-AA_list:            list of away team's away ratings
-
-AH_list:            list of away team's home ratings
-
-team_rate_HH:       home team home rating
-
-team_rate_HA:       home team away rating
-
-team_rate_AA:       away team away rating
-
-team_rate_AH:       away team home rating
-
-e_score_diff_H:     expected score difference
-                    against the average opponent
-                    for the home team
-
-e_score_diff_A:     expected score difference
-                    against the average opponent
-                    for the away team
-
-e_score_diff:       expected score difference
-                    for match
-
-prediction_error:   prediction error
-
-weighted_error:     weighted error
-
-weighted_error_H:   weighted error home team
-
-weighted_error_A:   weighted error away team
-
-mean_sq_e:          mean squared error
 }
 \description{
 This function calculates dynamic performance ratings
@@ -105,4 +43,10 @@ ability of football teams by dynamic ratings based on the relative
 discrepancies in scores between adversaries'.
 
 source: http://www.constantinou.info/downloads/papers/pi-ratings.pdf
+}
+\examples{
+# toy example
+teams <- matrix(c("team A", "team B", "team B", "team A"), nrow = 2)
+outcomes <- matrix(c(1, 3, 2, 1), nrow = 2)
+calculate_pi_ratings(teams, outcomes)
 }

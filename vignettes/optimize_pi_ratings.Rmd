@@ -1,0 +1,19 @@
+---
+title: "optimize_pi_ratings"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{optimize_pi_ratings}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(piratings)
+```
