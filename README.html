@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Lars Van Cutsem" />
+
+<meta name="date" content="2019-05-17" />
+
+<title>Pi Ratings</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Pi Ratings</h1>
+<h4 class="author">Lars Van Cutsem</h4>
+<h4 class="date">2019-05-17</h4>
+
+
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- badges: start -->
+<!-- badges: end -->
+<p>The goal of piratings is to calculate dynamic performance ratings for association football teams in a competitive match setting. The pi rating system takes into account the team’s performance in recent matches, the well-known home advantage effect and, the fact that a win is more important than increasing the score difference. The dynamic rating system has proven to obtain superior results in predicting the outcome of association football matches.</p>
+<p>The pi rating system was developed by Constantinou and Fenton in the research paper “Determining the level of ability of football teams by dynamic ratings based on the relative discrepancies in scores between adversaries”.</p>
+<p>The paper can be found <a href="http://www.constantinou.info/downloads/papers/pi-ratings.pdf">here</a></p>
+<div id="installation" class="section level2">
+<h2>Installation</h2>
+<p>You can install the released version of piratings from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;piratings&quot;</span>)</code></pre></div>
+</div>
+<div id="example" class="section level2">
+<h2>Example</h2>
+<p>This is a basic example which shows you how to use the package:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(piratings)
+
+## example data from the European Soccer Dataset
+## for the English Premier League during the seasons
+## 2008/2009 to 2015/2016
+
+<span class="kw">data</span>(<span class="st">&quot;EPL2008_2015&quot;</span>)
+<span class="kw">head</span>(EPL2008_<span class="dv">2015</span>)
+<span class="co">#&gt;                  date        home_team            away_team home_goals</span>
+<span class="co">#&gt; 1 2008-08-16 00:00:00          Arsenal West Bromwich Albion          1</span>
+<span class="co">#&gt; 2 2008-08-16 00:00:00       Sunderland            Liverpool          0</span>
+<span class="co">#&gt; 3 2008-08-16 00:00:00  West Ham United       Wigan Athletic          2</span>
+<span class="co">#&gt; 4 2008-08-16 00:00:00          Everton     Blackburn Rovers          2</span>
+<span class="co">#&gt; 5 2008-08-16 00:00:00    Middlesbrough    Tottenham Hotspur          2</span>
+<span class="co">#&gt; 6 2008-08-16 00:00:00 Bolton Wanderers           Stoke City          3</span>
+<span class="co">#&gt;   away_goals</span>
+<span class="co">#&gt; 1          0</span>
+<span class="co">#&gt; 2          1</span>
+<span class="co">#&gt; 3          1</span>
+<span class="co">#&gt; 4          3</span>
+<span class="co">#&gt; 5          1</span>
+<span class="co">#&gt; 6          1</span></code></pre></div>
+<p>We prepare the function arguments:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## prepare the function arguments:
+teams &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(EPL2008_<span class="dv">2015</span>[, <span class="kw">c</span>(<span class="st">&quot;home_team&quot;</span>, <span class="st">&quot;away_team&quot;</span>)])
+outcomes &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(EPL2008_<span class="dv">2015</span>[, <span class="kw">c</span>(<span class="st">&quot;home_goals&quot;</span>, <span class="st">&quot;away_goals&quot;</span>)])
+
+grid &lt;-<span class="st"> </span><span class="kw">optimize_pi_ratings</span>(teams, outcomes, <span class="kw">seq</span>(<span class="fl">0.04</span>, <span class="fl">0.08</span>, <span class="fl">0.005</span>), <span class="kw">seq</span>(<span class="fl">0.3</span>, <span class="fl">0.7</span>, <span class="fl">0.05</span>))</code></pre></div>
+<p>Finally, we can plot the result of the grid optimization using ggplot2:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## we plot this grid using the ggplot2 library
+<span class="kw">library</span>(ggplot2)
+
+<span class="kw">ggplot</span>(<span class="dt">data =</span> grid, <span class="kw">aes</span>(<span class="dt">x =</span> lambda, <span class="dt">y =</span> gamma, <span class="dt">fill =</span> mean.squared.error)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_tile</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_gradient2</span>(<span class="dt">low =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">mid =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">midpoint =</span> <span class="fl">2.668</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;lambda&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;gamma&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;grid optimization&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Mean </span><span class="ch">\n</span><span class="st">squared </span><span class="ch">\n</span><span class="st">error&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>))</code></pre></div>
+<p><img src="data:image/png;base64,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" width="100%" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+## we find the optimal parameter settings to be
+## lambda = 0.06 and gamma = 0.6
+
+piratings &lt;-<span class="st"> </span><span class="kw">calculate_pi_ratings</span>(teams, outcomes, <span class="fl">0.06</span>, <span class="fl">0.6</span>)
+<span class="kw">tail</span>(piratings)
+<span class="co">#&gt;               [,1]        [,2]</span>
+<span class="co">#&gt; [3035,] 0.94280097  0.21240516</span>
+<span class="co">#&gt; [3036,] 0.27533743  0.41752676</span>
+<span class="co">#&gt; [3037,] 0.35240392  0.68135781</span>
+<span class="co">#&gt; [3038,] 0.01547854 -0.03855970</span>
+<span class="co">#&gt; [3039,] 0.06408034  0.53412326</span>
+<span class="co">#&gt; [3040,] 0.88992232 -0.07992604</span></code></pre></div>
+</div>
+<div id="data" class="section level2">
+<h2>Data</h2>
+<p>Contains information from the European Soccer Database, which is made available <a href="https://www.kaggle.com/hugomathien/soccer">here</a> under the <a href="https://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a> (ODbL) .</p>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
